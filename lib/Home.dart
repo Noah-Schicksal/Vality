@@ -14,12 +14,12 @@ Widget _currentPage = test();
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    // Obtém as dimensões da tela
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
 
     // Calcula a altura do cabeçalho do Drawer como uma porcentagem da altura da tela
     double headerHeight = screenHeight * 0.25;  // 25% da altura da tela
+    //isso foi usado por questão de desing, pois usar o list não me permitiu usar a cor como plano de fundo, ficando cortada
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -30,15 +30,15 @@ class _HomeState extends State<Home> {
       drawer: Drawer(
         child: Column(
           children: [
-            // Cabeçalho do Drawer
+           
             Container(
-              width: double.infinity, // Garante que o container ocupe toda a largura disponível
-              height: headerHeight,  // Usa a altura dinâmica
+              width: double.infinity, 
+              height: headerHeight,  
               decoration: BoxDecoration(
-                color: Colors.red,  // Cor de fundo vermelha
+                color: Colors.red,  
               ),
               child: Padding(
-                padding: EdgeInsets.fromLTRB(16, screenHeight * 0.05, 16, 0), // Ajuste do padding
+                padding: EdgeInsets.fromLTRB(16, screenHeight * 0.05, 16, 0), 
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -46,17 +46,17 @@ class _HomeState extends State<Home> {
                       'VALITY',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 24,  // Tamanho fixo da fonte
+                        fontSize: 24,  
                       ),
                     ),
-                    Spacer(), // Espaço que empurra o texto para a parte inferior
+                    Spacer(), 
                     Padding(
                       padding: EdgeInsets.only(bottom: 16),
                       child: Text(
                         'Desenvolvido por Michael Jhonathan',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 12,  // Tamanho fixo da fonte
+                          fontSize: 12,  
                         ),
                       ),
                     ),
@@ -97,7 +97,7 @@ class _HomeState extends State<Home> {
               },
             ),
 
-            // Spacer que empurra o item abaixo para o final
+           
             Spacer(),
 
             // Item fixado no fundo
