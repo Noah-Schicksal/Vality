@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class Item {
-  String id = ""; // Adicionando o campo id
+  String id = ""; 
   String _Validade = "";
   String _RegistradoEm = "";
   String _Descricao = "";
@@ -54,5 +54,5 @@ class Item {
   }
 
   // Getter para o campo id
-  String get Id => id;  // Acessar o id com o getter 'Id'
+  String get Id => id;  
 }
