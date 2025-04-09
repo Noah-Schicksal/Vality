@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "606864477691",
+    "project_id": "vality-bf7e1",
+    "storage_bucket": "vality-bf7e1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606864477691:android:faf33a28271abb7ce28f5e",
+        "android_client_info": {
+          "package_name": "com.example.vality"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtgblg2dYF2MYVkrgG6S-gL2vCq73Bu9Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
