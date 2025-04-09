@@ -4,31 +4,27 @@ import 'package:intl/intl.dart';
 import 'model/itens.dart';
 import 'dart:async';
 
-import 'model/notify/notifications_service.dart'; // Importando o serviço de notificação
+import 'model/notify/notifications_service.dart'; 
 
 class InicioPage extends StatefulWidget {
   @override
-  _InicioPageState createState() => _InicioPageState(); // Criando o estado do widget
+  _InicioPageState createState() => _InicioPageState(); 
 }
 
 class _InicioPageState extends State<InicioPage> {
-  // Lista de itens
+  
   List<Item> _itens = [];
 
-  // Função para recuperar os itens do Firestore
   Future<void> _recuperarItens() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
     QuerySnapshot<Map<String, dynamic>> querySnapshot =
     await db.collection("Itens").get();
 
-    // Usando o Item.fromSnapshot para mapear os documentos
     List<Item> itens = querySnapshot.docs.map((doc) {
       return Item.fromSnapshot(doc); // Atualizado para Item
     }).toList();
 
-    // Ordenar a lista pela data de validade (da mais próxima para a mais distante)
     itens.sort((a, b) {
-      // Formatar a data para DateTime usando o formato correto
       DateFormat dateFormat = DateFormat("dd/MM/yyyy");
       DateTime validadeA = dateFormat.parse(a.Validade); // Convertendo para DateTime
       DateTime validadeB = dateFormat.parse(b.Validade); // Convertendo para DateTime
@@ -36,10 +32,8 @@ class _InicioPageState extends State<InicioPage> {
     });
 
     setState(() {
-      _itens = itens; // Atualizando a lista de itens no estado
+      _itens = itens; 
     });
-
-    // Verificar e excluir itens com validade expirada
     _verificarEEnviarNotificacoes();
   }
 
@@ -58,14 +52,13 @@ class _InicioPageState extends State<InicioPage> {
         _itens.removeWhere((item) => item.Id == documentId);
       });
 
-      // Mostrando uma mensagem de sucesso
       print("Item excluído com sucesso!");
     } catch (e) {
       print("Erro ao excluir item: $e");
     }
   }
 
-  // Função para verificar a data de validade e enviar notificações
+  // verificar a data de validade e enviar notificações
   void _verificarEEnviarNotificacoes() {
     DateFormat dateFormat = DateFormat("dd/MM/yyyy");
     DateTime now = DateTime.now();
@@ -74,7 +67,7 @@ class _InicioPageState extends State<InicioPage> {
       DateTime validade = dateFormat.parse(item.Validade);
       int diasRestantes = validade.difference(now).inDays;
 
-      // Enviar notificações de acordo com a proximidade da validade
+      // notificações de acordo com a proximidade da validade
       if (diasRestantes == 30 || diasRestantes == 15 || diasRestantes == 7) {
         // Enviar a notificação
         NotificationService.showNotification(
@@ -84,7 +77,7 @@ class _InicioPageState extends State<InicioPage> {
         );
       }
 
-      // Verificando se o item expirou (vencido há mais de 5 dias) e excluir
+      // se o item expirou (vencido há mais de 5 dias) e excluir
       if (validade.isBefore(now.subtract(Duration(days: 5)))) {
         _excluirItem(item.id);
       }
@@ -189,7 +182,6 @@ class _InicioPageState extends State<InicioPage> {
                   ],
                 ),
               ),
-              // Divider para separar os itens
               Divider(
                 color: Colors.grey,
                 thickness: 1,
