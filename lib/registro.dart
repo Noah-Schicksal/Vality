@@ -16,7 +16,7 @@ class _RegistroPageState extends State<RegistroPage> {
   String _menssagemErro = "";
   DateTime diaHoje = DateTime.now();
 
-  // Método para validar os campos antes de salvar no banco
+  
   _validarCampos() async {
     String Validade = _preenchimentoValidade.text;
     String data = _data_Hoje.text;
@@ -37,7 +37,7 @@ class _RegistroPageState extends State<RegistroPage> {
           item.EAN = ean;
           item.RegistradoEm = diaHoje.toString();
 
-          // Cadastrar o item e mostrar a Snackbar
+          
           await _cadastrarItem(item);
         } else {
           setState(() {
@@ -56,15 +56,13 @@ class _RegistroPageState extends State<RegistroPage> {
     }
   }
 
-  // Método para cadastrar o item no Firestore
+  
   _cadastrarItem(Item item) async {
     FirebaseFirestore db = FirebaseFirestore.instance;
 
     try {
-      // Registra o item no Firestore
       await db.collection("Itens").doc().set(item.toMap());
 
-      // Exibe a Snackbar de sucesso após o cadastro
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Item registrado com sucesso!'),
@@ -73,7 +71,6 @@ class _RegistroPageState extends State<RegistroPage> {
         ),
       );
     } catch (e) {
-      // Caso ocorra algum erro, exibe a Snackbar de erro
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erro ao registrar o item!'),
@@ -87,19 +84,15 @@ class _RegistroPageState extends State<RegistroPage> {
   TextEditingController validadeController = TextEditingController();
   TextEditingController diasRestantesController = TextEditingController();
 
-  // Função para calcular os dias restantes para o produto vencer
   void calcularDiasRestantes(String validade) {
     try {
-      // Obter a data de validade a partir da string inserida no campo
       DateTime validadeDate = DateFormat('dd/MM/yyyy').parse(validade);
 
-      // Obter a data de hoje
       DateTime hoje = DateTime.now();
 
-      // Calcular a diferença entre as datas
       int diferenca = validadeDate.difference(hoje).inDays;
 
-      // Atualizar o estado para mostrar a diferença na tela
+    
       setState(() {
         if (diferenca > 0) {
           diasRestantesController.text = '$diferenca dias';
@@ -110,7 +103,7 @@ class _RegistroPageState extends State<RegistroPage> {
         }
       });
     } catch (e) {
-      // Caso a data não seja válida, não faz nada ou pode exibir um erro
+    
       setState(() {
         diasRestantesController.text = 'Data inválida';
       });
@@ -129,7 +122,6 @@ class _RegistroPageState extends State<RegistroPage> {
               padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
               child: Row(
                 children: [
-                  // Campo de Descrição
                   Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(right: 16),
@@ -244,7 +236,6 @@ class _RegistroPageState extends State<RegistroPage> {
             ),
             Row(
               children: [
-                // Campo de Data
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(32, 16, 16, 16),
@@ -276,7 +267,6 @@ class _RegistroPageState extends State<RegistroPage> {
                     ),
                   ),
                 ),
-                // Campo de Dias Restantes
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(16, 16, 32, 16),
@@ -291,7 +281,7 @@ class _RegistroPageState extends State<RegistroPage> {
                         SizedBox(height: 12),
                         TextField(
                           controller: diasRestantesController,
-                          enabled: false, // O campo não é editável
+                          enabled: false, 
                           style: TextStyle(fontSize: 16),
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.fromLTRB(24, 16, 32, 16),
