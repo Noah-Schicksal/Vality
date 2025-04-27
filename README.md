@@ -2,15 +2,8 @@
 
 orgnizador de itens com validade.
 
-## Getting Started
+esse projeto é feito em dart, um aplicativo para android que usa o firebase como banco de dados e autenticador de usuários
 
-This project is a starting point for a Flutter application.
+é possivel fazer o registro de itens, os quais tem validade próxima para ajudar a previnir o disperdicio de itens pereciveis
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+atualmente o aplicativo está em fase de testes mas segue 100% funcional 
